@@ -29,6 +29,14 @@ function resize(img)
     return image.scale(img, WIDTH,HEIGHT)
 end
 
+function subtractMean(img) 
+    return img - torch.mean(img)
+end
+
+function yuv(img)
+    return image.rgb2yuv(img)
+end
+
 --[[
 -- Hint:  Should we add some more transforms? shifting, scaling?
 -- Should all images be of size 32x32?  Are we losing 
@@ -36,7 +44,9 @@ end
 --]]
 function transformInput(inp)
     f = tnt.transform.compose{
-        [1] = resize
+        [1] = resize,
+       --[2] = yuv
+        [2] = subtractMean
     }
     return f(inp)
 end
