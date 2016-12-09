@@ -42,8 +42,8 @@ end
 function transformInput(inp)
     f = tnt.transform.compose{
         [1] = resize,
-	[2] = subtractMean,
-	[3] = yuv
+	[2] = subtractMean
+--	[3] = yuv
     }
     return f(inp)
 end
@@ -176,7 +176,7 @@ engine.hooks.onEnd = function(state)
 end
 
 local epoch = 1
-local lr = 0.01
+local lr = 0.1
 print(model)
 while epoch <= opt.nEpochs do
     trainDataset:select('train')
@@ -189,7 +189,8 @@ while epoch <= opt.nEpochs do
         config = {
             learningRate = lr,
             momentum = opt.momentum,
-            weightDecay = 1e-4
+            weightDecay = .001,
+	learningRateDecay = .01
         }
     }
 
@@ -206,8 +207,7 @@ while epoch <= opt.nEpochs do
 
     end
 end
-
-local submission = assert(io.open(opt.logDir .. "/submission_200vgg_weightdecay.csv", "w"))
+local submission = assert(io.open(opt.logDir .. "/submission_resnet_50.csv", "w"))
 submission:write("Filename,ClassId\n")
 batch = 1
 

@@ -231,7 +231,8 @@ while epoch <= opt.nEpochs do
         config = {
             learningRate = lr,
             momentum = opt.momentum,
-	    learningRateDecay = 1e-4
+	    weightDecay = 1e-4,
+	learningRateDecay = .01
         }
     }
 
@@ -245,7 +246,7 @@ while epoch <= opt.nEpochs do
     epoch = epoch + 1
 end
 
-local submission = assert(io.open(opt.logDir .. "/submission_jitter_lr100.csv", "w"))
+local submission = assert(io.open(opt.logDir .. "/submission_jitter_wd50.csv", "w"))
 submission:write("Filename,ClassId\n")
 batch = 1
 
