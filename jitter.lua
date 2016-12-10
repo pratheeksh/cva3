@@ -218,7 +218,7 @@ engine.hooks.onEnd = function(state)
 end
 
 local epoch = 1
-local lr = 0.1
+local lr = 0.01
 print(model)
 while epoch <= opt.nEpochs do
     trainDataset:select('train')
@@ -232,7 +232,7 @@ while epoch <= opt.nEpochs do
             learningRate = lr,
             momentum = opt.momentum,
 	    weightDecay = 1e-4,
-	learningRateDecay = .01
+	learningRateDecay = .0001
         }
     }
 
