@@ -177,7 +177,6 @@ end
 
 local epoch = 1
 local lr = 0.1
-print(model)
 while epoch <= opt.nEpochs do
     trainDataset:select('train')
     engine:train{
