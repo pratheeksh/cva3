@@ -11,4 +11,4 @@ module purge
 module load torch/gnu/20160623
 # module list
  
-qlua trafficmain.lua -model vgg -nEpochs 100 >> /home/pks329/traffic-sign-detection/vgg100_trafficmain_weightdecay.log
+qlua jitter.lua -model resnet -nEpochs 50 >> /home/pks329/traffic-sign-detection/resnet.log
