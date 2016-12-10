@@ -206,7 +206,9 @@ while epoch <= opt.nEpochs do
 
     end
 end
-local submission = assert(io.open(opt.logDir .. "/submission_resnet_50.csv", "w"))
+
+
+local submission = assert(io.open(opt.logDir .. "/submission_vgg_100_final.csv", "w"))
 submission:write("Filename,ClassId\n")
 batch = 1
 
@@ -233,5 +235,5 @@ engine:test{
     network = model,
     iterator = getIterator(testDataset)
 }
-
+torch.save('modelfinal.t7', model:clearState())
 print("The End!")
